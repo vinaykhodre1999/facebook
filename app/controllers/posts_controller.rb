@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :check_current_user
 
   def index
     @posts = Post.all 
@@ -25,6 +26,9 @@ class PostsController < ApplicationController
         render json: @post
         }
       end
+    else
+      @posts = Post.all
+      render :index
     end    
   end
 

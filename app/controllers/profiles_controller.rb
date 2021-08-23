@@ -36,11 +36,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-
   private
     def profile_params
-     # params.require(:profile).permit(:dob, :address)
-          params.require(:profile).permit(:dob, :address, :image, users_attributes: [:email]) 
+      params.require(:profile).permit(:dob, :address, :image, users_attributes: [:email]) 
     end
-
 end

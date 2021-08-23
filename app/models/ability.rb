@@ -14,6 +14,13 @@ class Ability
       else
         can :read, :all
         can [:create, :update, :destroy], [Post, Comment, Reply], user_id: user.id 
+        can [:destroy], Comment do |obj|
+          obj.post.user_id == user.id 
+        end
+
+        can [:destroy], Reply do |obj|
+          obj.comment.post.user_id == user.id 
+        end
       end
 
   end

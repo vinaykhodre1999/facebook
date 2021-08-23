@@ -5,16 +5,20 @@
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>  
+    <% if @post.present? %>
     <% @post.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
+    <% end %>
     <% end %>
   </div>
 
   <div>
     <%= form.label :body %><br>
     <%= form.text_field :body %><br>
+    <% if @post.present? %>
     <% @post.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
+    <% end %>
     <% end %>
   </div>
 
