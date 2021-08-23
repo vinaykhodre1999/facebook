@@ -1,0 +1,9 @@
+<h4>Edit Reply:</h4>  
+      
+<%= form_with model: @reply, url: post_comment_reply_path(@reply.comment.post, @reply) do |form| %> 
+  <p>
+    <%= form.text_field :title,placeholder: "replier" %><br>
+    <%= form.text_field :body,placeholder: "reply" %><br>
+    <%= form.submit %>
+  </p>
+<% end %>

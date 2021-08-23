@@ -1,0 +1,17 @@
+<h1>Edit Post</h1>
+
+<%= form_with model: @post do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_area :title %>  
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

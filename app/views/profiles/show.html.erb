@@ -1,0 +1,16 @@
+
+ <h5>Welcome <%= current_user.email %></h5> 
+ <p>
+   <%= @profile.dob %>
+ </p>
+ <p>
+   <%= @profile.address %>
+ </p>
+ 
+   <% if @profile.image.attached? %>
+      <p>
+        <%= image_tag( @profile.image, style:'width:500px; ') %>
+      </p>
+   <% end %>
+ 
+<%= link_to "Edit", edit_user_registration_path %>

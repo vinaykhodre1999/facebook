@@ -1,0 +1,19 @@
+<h3>Edit profile</h3>
+
+<%= form_with model: @profile do |form| %>
+
+  <div>
+    <%= form.label :dob %><br>
+    <%= form.text_field :dob %>  
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %><br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>

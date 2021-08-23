@@ -1,0 +1,23 @@
+<h3>Profile</h3>
+
+<%= form_with model: @profile do |form| %>
+
+  <div>
+    <%= form.label :dob %><br>
+    <%= form.text_field :dob %>  
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %><br>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %><br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

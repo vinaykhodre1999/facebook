@@ -1,0 +1,80 @@
+<br><%= link_to "logout", destroy_user_session_path, method: :delete %>
+
+<% if current_user %>
+  <h3>Hi <%= current_user.email %></h3>
+<%end %>
+
+<%= link_to "Show Profile",profile_path(current_user.profile) %>
+
+<%= render partial: "posts/form"%>
+
+<ol>
+  <% @posts.each do |post| %>
+    <li>
+      <p>
+        Title: <%= post.title %><br>
+        Body: <%= post.body %><br>
+        user:  <%= post.user.email %><br>
+
+        <% if can? :update, post %>
+          <%= link_to "Edit", edit_post_path(post)%>
+        <% end %>
+        <% if can? :destroy, post %>
+          <%= link_to "Destroy", post_path(post),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" }%><br>      
+        <% end %>
+
+      </p>
+
+      <% if post.comments.any? %>
+        <h4>Comments</h4>
+        <% post.comments.order(updated_at: :desc).each do |comment| %>
+          <p>
+            <ul>
+              Commenter:<%= comment.commenter %><br>
+              Comment:<%= comment.body %><br>
+              user:  <%= comment.user.email %><br>
+
+   
+            <% if can? :update, comment %>
+              <%= link_to "Edit", edit_post_comment_path(post, comment) %>
+            <% end %>
+            <% if can? :destroy, comment %>
+              <%= link_to "Destroy", post_comment_path(post, comment),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>               
+            <% end %>
+            
+              <% comment.replies.each do |reply| %>
+                <ul>
+                  <br>Replier:<%= reply.title %><br>
+                  Reply:<%= reply.body %><br>
+                  user:  <%= reply.user.email %><br>
+
+                <% if can? :update, comment %>
+                  <%= link_to "Edit", edit_post_comment_reply_path(post, comment, reply) %>
+                <% end %>
+                <% if can? :destroy, comment %>
+                  <%= link_to "Destroy", post_comment_reply_path(post, comment, reply),
+                                method: :delete,
+                                data: { confirm: "Are you sure?" } %> 
+                <% end %>
+  
+                </ul>
+              <% end %>
+              <ul>
+                <%= render partial: "replies/form", locals: {comment: comment} %>
+              </ul>
+            </ul>
+          </p>
+        <% end %>
+      <% end %>
+
+      <%= render partial: "comments/form", locals: {post: post} %>
+
+    </li>
+  <% end %>
+</ol>
+
+

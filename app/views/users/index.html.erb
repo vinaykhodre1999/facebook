@@ -1,0 +1,12 @@
+<h1>registration</h1>
+<%= form_for @user do |t|%>
+  <%= t.label :email%><br>
+  <%= t.text_field :email%><br>
+  <%= t.label :password%><br>
+  <%= t.password_field :password%><br>
+  <%= t.submit %><br><br>
+ 
+<%end%>
+      
+<%= link_to "login", login_path %>
+        
